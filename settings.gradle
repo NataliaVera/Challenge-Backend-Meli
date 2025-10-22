@@ -1,0 +1,3 @@
+rootProject.name = 'ChallengeBackendMeli'
+include 'ms-inventory'
+

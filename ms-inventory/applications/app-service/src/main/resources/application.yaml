@@ -1,0 +1,35 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: "ms-inventory"
+  devtools:
+    add-properties: false
+  h2:
+    console:
+      enabled: true
+      path: "/h2"
+  profiles:
+    include: null
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+adapters:
+  postgres:
+    database: "inventory_db"
+    host: "localhost"
+    port: 5433
+    username: "postgres"
+    password: "123456"
+    schema: "public"
+    pool:
+      initial-size: 12
+      max-size: 15
+      max-idle-time: 10
