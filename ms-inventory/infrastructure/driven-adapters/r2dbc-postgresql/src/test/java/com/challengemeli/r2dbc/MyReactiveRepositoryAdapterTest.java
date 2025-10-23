@@ -1,5 +1,7 @@
 package com.challengemeli.r2dbc;
 
+import com.challengemeli.r2dbc.repositoryadpter.ProductRepositoryAdapter;
+import com.challengemeli.r2dbc.repositoryadpter.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

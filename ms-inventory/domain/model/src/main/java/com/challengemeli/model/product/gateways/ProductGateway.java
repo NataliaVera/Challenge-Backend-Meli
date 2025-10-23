@@ -9,6 +9,8 @@ import java.util.UUID;
 public interface ProductGateway {
     Mono<Product> createProduct(Product product);
     Mono<Product> findByProductId(UUID id);
+    Mono<Product> findByProductCode(String productCode);
     Flux<Product> findAllProducts();
+    Mono<Void> deleteProductById(UUID productId);
 
 }

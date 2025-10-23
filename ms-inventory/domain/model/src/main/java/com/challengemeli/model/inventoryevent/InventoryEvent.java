@@ -1,4 +1,4 @@
-package com.challengemeli.model.product;
+package com.challengemeli.model.inventoryevent;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,14 +14,11 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class Product {
+public class InventoryEvent {
 
-    private UUID productId;
-    private String productCode;
-    private String productName;
-    private String description;
-    private Double productPrice;
-    private String productCategory;
+    private UUID eventId;
+    private String eventType;
+    private String sourceStoreCode;
+    private String payload;
     private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 }

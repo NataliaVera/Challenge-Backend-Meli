@@ -39,4 +39,10 @@ public class ProductHandler {
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(product));
     }
+
+    public Mono<ServerResponse> deleteProduct(ServerRequest request){
+        UUID productId = UUID.fromString(request.pathVariable("id"));
+        return productUseCase.deleteProductById(productId)
+                .then(ServerResponse.noContent().build());
+    }
 }

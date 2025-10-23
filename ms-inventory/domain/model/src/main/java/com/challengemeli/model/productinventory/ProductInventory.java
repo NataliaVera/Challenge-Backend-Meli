@@ -1,4 +1,4 @@
-package com.challengemeli.model.product;
+package com.challengemeli.model.productinventory;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,14 +14,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class Product {
+public class ProductInventory {
 
     private UUID productId;
-    private String productCode;
-    private String productName;
-    private String description;
-    private Double productPrice;
-    private String productCategory;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private Integer totalStock;
+    private String stockByStore;
+    private LocalDateTime lastUpdated;
 }

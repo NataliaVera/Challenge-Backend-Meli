@@ -25,8 +25,16 @@ public class ProductUseCase {
     }
 
 
-    public Mono<Product> getProductById(UUID id) {
-        return productGateway.findByProductId(id);
+    public Mono<Product> getProductById(UUID productId) {
+        return productGateway.findByProductId(productId);
+    }
+
+    public Mono<Product> getProductByCode(String productCode) {
+        return productGateway.findByProductCode(productCode);
+    }
+
+    public Mono<Void> deleteProductById(UUID productId){
+        return productGateway.deleteProductById(productId);
     }
 
 }

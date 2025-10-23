@@ -1,4 +1,4 @@
-package com.challengemeli.r2dbc.data;
+package com.challengemeli.r2dbc.repositoryadpter.data;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
@@ -23,15 +23,20 @@ public class ProductData {
     @Id
     @Column("product_id")
     private UUID productId;
-    @Column("product_category")
+
+    @Column("product_code")
     private String productCode;
 
     @Column("product_name")
     private String productName;
+
     private String description;
 
     @Column("product_price")
     private Double productPrice;
+
+    @Column("product_category")
+    private String productCategory;
 
     @Column("created_at")
     @CreatedDate
