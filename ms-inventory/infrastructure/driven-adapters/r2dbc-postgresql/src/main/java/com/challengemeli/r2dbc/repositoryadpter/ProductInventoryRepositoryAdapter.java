@@ -15,33 +15,23 @@ import java.util.UUID;
 
 @Repository
 public class ProductInventoryRepositoryAdapter extends AdapterOperations<ProductInventory, ProductInventoryData, UUID,
-        ProductInventoryRepository> implements ProductGateway {
+        ProductInventoryRepository> implements ProductInventoryGateway {
     public ProductInventoryRepositoryAdapter(ProductInventoryRepository repository, ObjectMapper mapper) {
         super(repository, mapper, d -> mapper.map(d, ProductInventory.class));
     }
 
     @Override
-    public Mono<Product> createProduct(Product product) {
+    public Mono<ProductInventory> createProductInventory(ProductInventory productInventory){
+            return null;
+    }
+
+    @Override
+    public Mono<ProductInventory> findByProductId(UUID productId){
         return null;
     }
 
     @Override
-    public Mono<Product> findByProductId(UUID id) {
-        return null;
-    }
-
-    @Override
-    public Mono<Product> findByProductCode(String productCode) {
-        return null;
-    }
-
-    @Override
-    public Flux<Product> findAllProducts() {
-        return null;
-    }
-
-    @Override
-    public Mono<Void> deleteProductById(UUID productId) {
+    public Flux<ProductInventory> findAllProductInventory(){
         return null;
     }
 }

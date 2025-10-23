@@ -14,17 +14,26 @@ import java.util.UUID;
 
 @Repository
 public class ProductRepositoryAdapter extends AdapterOperations<Product, ProductData, UUID, ProductRepository>
-        implements ProductGateway {
+        implements Product {
     public ProductRepositoryAdapter(ProductRepository repository, ObjectMapper mapper) {
         super(repository, mapper, d -> mapper.map(d, Product.class));
     }
 
     @Override
     public Mono<Product> createProduct(Product product) {
-        ProductData data = toData(product);
-        return repository.save(data)
-                .map(this::toEntity)
-                .onErrorMap(ex -> new RuntimeException("Error al crear un producto" + ex.getMessage(), ex));
+        if (product == null){
+             return Mono.error(new IllegalArgumentException("Product cannot be null")); 
+        }
+
+        String productCode = product.getProductCode();
+        
+        return repository.findByProductCode(productCode)
+        .flatMap(exists -> Mono.error(new IllegalArgumentException("Product with code " + productCode + " already exists")))
+        .switchIfEmpty(Mono.defer(() -> {
+            ProductData productData = toData(product);
+            return repository.createProduct(productData)
+            .map(this::toEntity);
+        }));
 
     }
 
@@ -51,6 +60,8 @@ public class ProductRepositoryAdapter extends AdapterOperations<Product, Product
 
     @Override
     public Mono<Void> deleteProductById(UUID productId) {
-        return null;
+        return repository.findByProductId(productId)
+        .switchIfEmpty(Mono.error(new IllegalArgumentException("Product with id " + productId + " does not exist")))
+        .flatMap(exists -> repository.deleteById(productId));
     }
 }

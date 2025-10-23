@@ -20,21 +20,39 @@ public class StoreRepositoryAdapter extends AdapterOperations<Store, StoreData, 
 
     @Override
     public Mono<Store> createStore(Store store) {
-        return null;
+        if (store == null){
+            return Mono.error(new IllegalArgumentException("Store cannot be null"));
+        } 
+        
+        String storeCode = store.getStoreCode();
+
+        return repository.findByStoreCode(storeCode)
+                .flatMap(existingStoreData -> 
+                Mono.error(new IllegalArgumentException("Store with code " + storeCode + " already exists")))
+                .switchIfEmpty(Mono.defer(() -> {
+                    StoreData storeData = toData(store);
+                    return repository.save(storeData)
+                            .map(this::toEntity);
+                }));
     }
 
     @Override
     public Mono<Store> findStoreByCode(String storeCode) {
-        return null;
+        return repository.findByStoreCode(storeCode)
+        .switchIfEmpty(Mono.error(new IllegalArgumentException("Store with code " + storeCode + " does not exist")))
+        .map(this::toEntity);
     }
 
     @Override
     public Mono<Store> findAllStores() {
-        return null;
+        return repository.findAll()
+        .map(this::toEntity);
     }
 
     @Override
     public Mono<Void> deleteStoreById(UUID storeId) {
-        return null;
+        return repository.findById(storeId)
+        .switchIfEmpty(Mono.error(new IllegalArgumentException("Store with id " + storeId + " does not exist")))
+        .flatMap(exists -> repository.deleteById(storeId));
     }
 }

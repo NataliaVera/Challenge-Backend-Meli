@@ -5,10 +5,11 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;
-
+    
 public interface ProductInventoryGateway {
     Mono<ProductInventory> createProductInventory(ProductInventory productInventory);
     Mono<ProductInventory> findByProductId(UUID productId);
+    Mono<ProductInventory> updateStock(UUID productId, ProductInventory productInventory);
     Flux<ProductInventory> findAllProductInventory();
     Mono<Void> deleteProductInventory(UUID productInventory);
 }
