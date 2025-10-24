@@ -1,5 +1,5 @@
-package main.java.com.challengemeli.model.exception;
+package com.challengemeli.model.exception;
 
-public class InvalidInputException {
+public class InvalidInputException extends RuntimeException{
     public InvalidInputException(String message) { super(message); }
 }

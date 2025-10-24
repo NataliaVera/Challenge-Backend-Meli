@@ -1,4 +1,4 @@
-package main.java.com.challengemeli.model.exception;
+package com.challengemeli.model.exception;
 
 public class ResourceNotFoundException extends RuntimeException{
     public ResourceNotFoundException(String message) { super(message); }

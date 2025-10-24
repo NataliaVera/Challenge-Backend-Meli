@@ -20,7 +20,7 @@ public class ProductInventoryHandler {
     public Mono<ServerResponse> getAllInventory(ServerRequest request){
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(inventoryUseCase.getAllInventory(), ProductInventory.class);
+                .body(inventoryUseCase.findAllProductInventory(), ProductInventory.class);
     }
 
     public Mono<ServerResponse> getInventoryByProductId(ServerRequest request){

@@ -1,5 +1,5 @@
-package main.java.com.challengemeli.model.exception;
+package com.challengemeli.model.exception;
 
-public class ResourceAlreadyExistsException {
+public class ResourceAlreadyExistsException extends RuntimeException{
     public ResourceAlreadyExistsException(String message) { super(message); }
 }

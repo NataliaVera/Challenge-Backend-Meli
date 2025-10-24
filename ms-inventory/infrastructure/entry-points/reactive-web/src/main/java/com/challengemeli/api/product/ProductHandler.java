@@ -1,8 +1,10 @@
 package com.challengemeli.api.product;
 
+import com.challengemeli.api.helper.HandleException;
 import com.challengemeli.model.product.Product;
 import com.challengemeli.usecase.product.ProductUseCase;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -16,11 +18,22 @@ import java.util.UUID;
 public class ProductHandler {
 
     private final ProductUseCase productUseCase;
+    private final HandleException errorHandler;
+
+    public Mono<ServerResponse> createProduct(ServerRequest request) {
+        return request.bodyToMono(Product.class)
+                .flatMap(productUseCase::registerProduct)
+                .flatMap(product -> ServerResponse.status(HttpStatus.CREATED)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .bodyValue(product))
+                .onErrorResume(errorHandler::handleException);
+    }
 
     public Mono<ServerResponse> getAllProducts(ServerRequest request) {
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(productUseCase.getAllProducts(), Product.class);
+                .body(productUseCase.getAllProducts(), Product.class)
+                .onErrorResume(errorHandler::handleException);
     }
 
     public Mono<ServerResponse> getProductById(ServerRequest request) {
@@ -32,13 +45,25 @@ public class ProductHandler {
                 .switchIfEmpty(ServerResponse.notFound().build());
     }
 
-    public Mono<ServerResponse> createProduct(ServerRequest request) {
-        return request.bodyToMono(Product.class)
-                .flatMap(productUseCase::createProduct)
-                .flatMap(product -> ServerResponse.status(201)
+    public Mono<ServerResponse> getProductByCode(ServerRequest request) {
+        String code = request.pathVariable("code");
+        return productUseCase.getProductByCode(code)
+                .flatMap(product -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .bodyValue(product));
+                        .bodyValue(product))
+                .onErrorResume(errorHandler::handleException);
     }
+
+    public Mono<ServerResponse> updateProduct(ServerRequest request){
+        UUID productId = UUID.fromString(request.pathVariable("id"));
+        return request.bodyToMono(Product.class)
+                .flatMap(product -> productUseCase.updateProduct(productId, product))
+                .flatMap(updatedProduct -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .bodyValue(updatedProduct))
+                .onErrorResume(errorHandler::handleException);
+    }
+
 
     public Mono<ServerResponse> deleteProduct(ServerRequest request){
         UUID productId = UUID.fromString(request.pathVariable("id"));

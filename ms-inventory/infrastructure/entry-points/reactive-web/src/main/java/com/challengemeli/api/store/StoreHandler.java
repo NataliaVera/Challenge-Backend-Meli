@@ -17,14 +17,14 @@ public class StoreHandler {
 
     private final StoreUseCase storeUseCase;
 
-    public Mono<ServerResponse> createStore (ServerRequest request){
+    /*public Mono<ServerResponse> createStore (ServerRequest request){
         return request.bodyToMono(Store.class)
-                .flatMap(storeUseCase::registerStore)
+                .flatMap(storeUseCase::)
                 .flatMap(store -> ServerResponse.status(201)
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(store));
 
-    }
+    }*/
 
     public Mono<ServerResponse> getStoreByCode(ServerRequest request){
         String storeCode = request.pathVariable("storeCode");

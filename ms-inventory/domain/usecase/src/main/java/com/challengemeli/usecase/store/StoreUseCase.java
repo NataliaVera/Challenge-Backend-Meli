@@ -1,10 +1,10 @@
 package com.challengemeli.usecase.store;
 
+import com.challengemeli.model.exception.InvalidInputException;
+import com.challengemeli.model.exception.ResourceNotFoundException;
 import com.challengemeli.model.store.Store;
 import com.challengemeli.model.store.gateways.StoreGateway;
 import lombok.RequiredArgsConstructor;
-import main.java.com.challengemeli.model.exception.InvalidInputException;
-import main.java.com.challengemeli.model.exception.ResourceNotFoundException;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;
@@ -14,17 +14,17 @@ public class StoreUseCase {
 
     private final StoreGateway storeGateway;
 
-    public Mono<Store> registerStore(Store store){
+    /*public Mono<Store> registerStore(Store store){
         if (store == null){
             return Mono.error(new InvalidInputException("Store must not be null"));
         }
 
         validateStoreCode(store.getStoreCode());
 
-        return storeGateway.findByStoreCode(store.getStoreCode())
+        return storeGateway.findStoreByCode(store.getStoreCode())
             .flatMap(exists -> Mono.error(new ResourceAlreadyExistsException("Store with code "+ store.getStoreCode()+ "already exists")))
             .switchIfEmpty(Mono.defer(() -> storeGateway.createStore(store)));
-    }
+    }*/
 
     public Mono<Store> getStoreByCode(String storeCode){
         validateStoreCode(storeCode);
@@ -40,8 +40,9 @@ public class StoreUseCase {
     }
 
     private Mono<Void> validateStoreCode(String storeCode){
-        if (storeCode == null || storeCode.isBlank){
+        if (storeCode == null || storeCode.isBlank()){
             return Mono.error(new InvalidInputException("Store code is required"));
         }
+        return Mono.empty();
     }
 }

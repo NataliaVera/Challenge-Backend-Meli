@@ -20,20 +20,23 @@ public class RouterRest {
     public RouterFunction<ServerResponse> routerProduct(ProductHandler productHandler) {
         return route(GET("/api/products"), productHandler::getAllProducts)
                 .andRoute(POST("/api/products"), productHandler::createProduct)
-                .and(route(GET("/api/products/{id}"), productHandler::getProductById));
+                .andRoute(GET("/api/products/{id}"), productHandler::getProductById)
+                .andRoute(GET("/api/products/code/{code}"), productHandler::getProductByCode)
+                .andRoute(PUT("/api/products/update/{id}"), productHandler::updateProduct)
+                .and(route(DELETE("/api/products/{id}"), productHandler::deleteProduct));
     }
 
-    @Bean
+    /*@Bean
     public RouterFunction<ServerResponse> routerInventory(ProductInventoryHandler inventoryHandler){
         return route(GET("/api/inventory"), inventoryHandler::getAllInventory)
                 .andRoute(GET("/api/inventory/{productId}"), inventoryHandler::getInventoryByProductId)
                 .and(route(PUT("/api/inventory/{productId}"), inventoryHandler::updateStock));
-    }
+    }*/
 
-    @Bean
+    /*@Bean
     public RouterFunction<ServerResponse> routerStore(StoreHandler storeHandler){
         return route(POST("/api/store"), storeHandler::createStore)
                 .andRoute(GET("/api/store/{storeCode}"), storeHandler::getStoreByCode)
                 .andRoute(DELETE("/api/store/{id}"), storeHandler::deleteStore);
-    }
+    }*/
 }

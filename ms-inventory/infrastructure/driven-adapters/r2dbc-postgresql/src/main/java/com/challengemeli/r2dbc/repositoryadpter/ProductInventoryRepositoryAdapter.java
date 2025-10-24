@@ -3,6 +3,7 @@ package com.challengemeli.r2dbc.repositoryadpter;
 import com.challengemeli.model.product.Product;
 import com.challengemeli.model.product.gateways.ProductGateway;
 import com.challengemeli.model.productinventory.ProductInventory;
+import com.challengemeli.model.productinventory.gateways.ProductInventoryGateway;
 import com.challengemeli.r2dbc.repositoryadpter.data.ProductInventoryData;
 import com.challengemeli.r2dbc.helper.AdapterOperations;
 import com.challengemeli.r2dbc.repositoryadpter.repository.ProductInventoryRepository;
@@ -31,7 +32,17 @@ public class ProductInventoryRepositoryAdapter extends AdapterOperations<Product
     }
 
     @Override
+    public Mono<ProductInventory> updateStock(UUID productId, ProductInventory productInventory) {
+        return null;
+    }
+
+    @Override
     public Flux<ProductInventory> findAllProductInventory(){
+        return null;
+    }
+
+    @Override
+    public Mono<Void> deleteProductInventory(UUID productInventory) {
         return null;
     }
 }

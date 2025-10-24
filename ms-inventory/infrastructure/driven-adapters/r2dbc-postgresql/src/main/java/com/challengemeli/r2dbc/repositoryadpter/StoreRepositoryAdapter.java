@@ -26,27 +26,25 @@ public class StoreRepositoryAdapter extends AdapterOperations<Store, StoreData, 
         
         String storeCode = store.getStoreCode();
 
-        return repository.findByStoreCode(storeCode)
+        /*return repository.findByStoreCode(storeCode)
                 .flatMap(existingStoreData -> 
                 Mono.error(new IllegalArgumentException("Store with code " + storeCode + " already exists")))
                 .switchIfEmpty(Mono.defer(() -> {
                     StoreData storeData = toData(store);
                     return repository.save(storeData)
                             .map(this::toEntity);
-                }));
+                }));*/
+        return null;
     }
 
     @Override
     public Mono<Store> findStoreByCode(String storeCode) {
-        return repository.findByStoreCode(storeCode)
-        .switchIfEmpty(Mono.error(new IllegalArgumentException("Store with code " + storeCode + " does not exist")))
-        .map(this::toEntity);
+        return null;
     }
 
     @Override
     public Mono<Store> findAllStores() {
-        return repository.findAll()
-        .map(this::toEntity);
+        return null;
     }
 
     @Override

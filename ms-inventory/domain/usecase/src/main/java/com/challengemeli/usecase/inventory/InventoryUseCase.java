@@ -1,16 +1,15 @@
 package com.challengemeli.usecase.inventory;
 
+import com.challengemeli.model.exception.InvalidInputException;
+import com.challengemeli.model.exception.ResourceAlreadyExistsException;
+import com.challengemeli.model.exception.ResourceNotFoundException;
 import com.challengemeli.model.product.gateways.ProductGateway;
 import com.challengemeli.model.productinventory.ProductInventory;
 import com.challengemeli.model.productinventory.gateways.ProductInventoryGateway;
 import lombok.RequiredArgsConstructor;
-import main.java.com.challengemeli.model.exception.InvalidInputException;
-import main.java.com.challengemeli.model.exception.ResourceAlreadyExistsException;
-import main.java.com.challengemeli.model.exception.ResourceNotFoundException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.sound.sampled.Port;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -25,15 +24,16 @@ public class InventoryUseCase {
 
         UUID productId = productInventory.getProductId();
 
-        return validateProductId(productId)
+        return  null;
+        /*return validateProductId(productId)
             .then(productGateway.findByProductId(productId)
                 .switchIfEmpty(Mono.error(new ResourceNotFoundException("Product with id "+ productId+ "doesn't exists"))))
             .then(inventoryGateway.findByProductId(productId)
-                .flatmap(exists -> Mono.error(new ResourceAlreadyExistsException("Inventory for product id "+productId+" already exists")))
+                .flatMap(exists -> Mono.error(new ResourceAlreadyExistsException("Inventory for product id "+productId+" already exists")))
                 .switchIfEmpty(Mono.defer(() ->{
                     productInventory.setLastUpdated(LocalDateTime.now());
                     return inventoryGateway.createProductInventory(productInventory);
-                })));
+                })));*/
     }
 
     
@@ -42,16 +42,16 @@ public class InventoryUseCase {
         return inventoryGateway.findByProductId(productId);
     }
     
-    public Mono<ProductInventory> updateStock(UUID productId, ProductInventory productInventory){
+    /*public Mono<ProductInventory> updateStock(UUID productId, ProductInventory productInventory){
         validateProductId(productId);
         return inventoryGateway.findByProductId(productId)
                 .flatMap(inv ->{
-                    int newStock = Math.max(0, inv.getTotalStock() + x);
+                    int newStock = Math.max(0, inv.getTotalStock() + inv);
                     inv.setTotalStock(newStock);
                     inv.setLastUpdated(LocalDateTime.now());
                     return inventoryGateway.createProductInventory(inv);
                 });
-    }
+    }*/
 
     public Flux<ProductInventory> findAllProductInventory(){
         return inventoryGateway.findAllProductInventory();
@@ -64,5 +64,6 @@ public class InventoryUseCase {
 
     private Mono<Void> validateProductId (UUID productId){
         if (productId == null) return Mono.error(new InvalidInputException("Product id is required"));
+        return Mono.empty();
     }
 }
