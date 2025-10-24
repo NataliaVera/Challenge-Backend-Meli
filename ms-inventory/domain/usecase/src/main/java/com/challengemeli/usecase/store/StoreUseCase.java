@@ -1,10 +1,12 @@
 package com.challengemeli.usecase.store;
 
 import com.challengemeli.model.exception.InvalidInputException;
+import com.challengemeli.model.exception.ResourceAlreadyExistsException;
 import com.challengemeli.model.exception.ResourceNotFoundException;
 import com.challengemeli.model.store.Store;
 import com.challengemeli.model.store.gateways.StoreGateway;
 import lombok.RequiredArgsConstructor;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;
@@ -14,22 +16,31 @@ public class StoreUseCase {
 
     private final StoreGateway storeGateway;
 
-    /*public Mono<Store> registerStore(Store store){
+    public Mono<Store> registerStore(Store store){
         if (store == null){
             return Mono.error(new InvalidInputException("Store must not be null"));
         }
 
-        validateStoreCode(store.getStoreCode());
+        return validateStoreCode(store.getStoreCode())
+                .then(storeGateway.existsStoreByCode(store.getStoreCode()))
+                .flatMap(exists -> {
+                    if (exists) {
+                        return Mono.error(new ResourceAlreadyExistsException
+                                ("Store with code " + store.getStoreCode() + " already exists"));
+                    }
+                    return storeGateway.createStore(store);
+                });
+    }
 
-        return storeGateway.findStoreByCode(store.getStoreCode())
-            .flatMap(exists -> Mono.error(new ResourceAlreadyExistsException("Store with code "+ store.getStoreCode()+ "already exists")))
-            .switchIfEmpty(Mono.defer(() -> storeGateway.createStore(store)));
-    }*/
+    public Flux<Store> getAllStores(){
+        return storeGateway.findAllStores();
+    }
 
     public Mono<Store> getStoreByCode(String storeCode){
-        validateStoreCode(storeCode);
-        return storeGateway.findStoreByCode(storeCode)
-        .switchIfEmpty(Mono.error(new ResourceNotFoundException("Store with code "+ storeCode + "not found")));
+        return validateStoreCode(storeCode)
+                .then(storeGateway.findStoreByCode(storeCode))
+                        .switchIfEmpty(Mono.error(new ResourceNotFoundException
+                                ("Store with code "+ storeCode + "not found")));
     }
 
     public Mono<Void> deleteStore(UUID storeId){

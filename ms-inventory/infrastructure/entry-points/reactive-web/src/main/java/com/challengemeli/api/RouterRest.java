@@ -33,10 +33,11 @@ public class RouterRest {
                 .and(route(PUT("/api/inventory/{productId}"), inventoryHandler::updateStock));
     }*/
 
-    /*@Bean
+    @Bean
     public RouterFunction<ServerResponse> routerStore(StoreHandler storeHandler){
         return route(POST("/api/store"), storeHandler::createStore)
                 .andRoute(GET("/api/store/{storeCode}"), storeHandler::getStoreByCode)
+                .andRoute(GET("/api/stores"), storeHandler::getAllStores)
                 .andRoute(DELETE("/api/store/{id}"), storeHandler::deleteStore);
-    }*/
+    }
 }
