@@ -16,8 +16,9 @@ import java.util.UUID;
 @Builder(toBuilder = true)
 public class ProductInventory {
 
+    private UUID inventoryId;
     private UUID productId;
+    private UUID storeId;
     private Integer totalStock;
-    private String stockByStore;
     private LocalDateTime lastUpdated;
 }

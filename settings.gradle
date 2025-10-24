@@ -1,3 +1,5 @@
 rootProject.name = 'ChallengeBackendMeli'
 include 'ms-inventory'
+include 'ms-product'
+include 'ms-store'
 
