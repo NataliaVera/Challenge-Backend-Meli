@@ -11,6 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ms-inventory" />
+            <option value="$PROJECT_DIR$/ms-notification" />
             <option value="$PROJECT_DIR$/ms-product" />
             <option value="$PROJECT_DIR$/ms-store" />
           </set>

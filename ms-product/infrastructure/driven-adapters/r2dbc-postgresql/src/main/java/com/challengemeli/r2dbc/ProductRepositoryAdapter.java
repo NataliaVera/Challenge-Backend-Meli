@@ -4,7 +4,6 @@ import com.challengemeli.model.product.Product;
 import com.challengemeli.model.product.gateways.ProductGateway;
 import com.challengemeli.r2dbc.data.ProductData;
 import com.challengemeli.r2dbc.helper.AdapterOperations;
-import com.challengemeli.r2dbc.helper.ReactiveAdapterOperations;
 import com.challengemeli.r2dbc.repository.ProductRepository;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
@@ -51,10 +50,10 @@ public class ProductRepositoryAdapter extends AdapterOperations<Product, Product
         return repository.findById(productId)
                 .switchIfEmpty(Mono.error(new IllegalArgumentException("Product with id " + productId + " does not exist")))
                 .flatMap(existing -> {
-                    ProductData productData = toData(product);
-                    productData.setProductId(productId);
+                    //ProductData productData = toData(product);
+                    existing.setProductId(productId);
 
-                    return repository.save(productData)
+                    return repository.save(existing)
                             .map(this::toEntity);
                 });
     }

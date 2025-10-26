@@ -65,3 +65,13 @@ CREATE TABLE IF NOT EXISTS public.tbl_products
     CONSTRAINT tbl_products_pkey PRIMARY KEY (product_id),
     CONSTRAINT tbl_products_product_code_key UNIQUE (product_code)
 )
+
+CREATE TABLE stock (
+    stock_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    store_id UUID NOT NULL,
+    product_id UUID NOT NULL,
+    quantity INT NOT NULL DEFAULT 0,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_store FOREIGN KEY (store_id) REFERENCES store(store_id),
+    CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES product(product_id)
+);

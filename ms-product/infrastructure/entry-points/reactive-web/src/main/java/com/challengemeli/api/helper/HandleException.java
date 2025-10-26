@@ -1,8 +1,8 @@
 package com.challengemeli.api.helper;
 
-import com.challengemeli.model.exception.InvalidInputException;
-import com.challengemeli.model.exception.ResourceAlreadyExistsException;
-import com.challengemeli.model.exception.ResourceNotFoundException;
+import com.challengemeli.model.product.exception.InvalidInputException;
+import com.challengemeli.model.product.exception.ResourceAlreadyExistsException;
+import com.challengemeli.model.product.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;

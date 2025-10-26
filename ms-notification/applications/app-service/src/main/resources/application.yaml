@@ -1,0 +1,76 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: "ms-notification"
+
+  devtools:
+    add-properties: false
+
+  profiles:
+    active: local
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/notification_db
+    username: postgres
+    password: postgres
+
+  h2:
+    console:
+      enabled: true
+      path: "/h2"
+
+  flyway:
+    enabled: true
+    url: jdbc:postgresql://localhost:5432/notification_db
+    user: postgres
+    password: postgres
+    locations: classpath:db/migration
+
+  # Kafka Config
+  kafka:
+    bootstrap-servers: "localhost:9092"
+    consumer:
+      group-id: "ms-notification"
+      auto-offset-reset: latest
+      enable-auto-commit: true
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+adapters:
+  kafka:
+    consumer:
+      topic: "inventory-sync-topic"
+  postgres:
+    database: "inventory_db"
+    host: "localhost"
+    port: 5433
+    username: "postgres"
+    password: "123456"
+    schema: "public"
+    pool:
+      initial-size: 12
+      max-size: 15
+      max-idle-time: 10
+
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.r2dbc: DEBUG
+    org.springframework.kafka: INFO
+    co.com.meli.notification: DEBUG

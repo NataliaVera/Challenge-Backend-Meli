@@ -1,5 +1,6 @@
 server:
   port: 8080
+
 spring:
   application:
     name: "ms-inventory"
@@ -11,6 +12,15 @@ spring:
       path: "/h2"
   profiles:
     include: null
+
+  kafka:
+    producer:
+      bootstrap-servers: "localhost:9092"
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    template:
+      default-topic: "inventory-updated"
+
 management:
   endpoints:
     web:
@@ -33,3 +43,7 @@ adapters:
       initial-size: 12
       max-size: 15
       max-idle-time: 10
+
+kafka:
+  topic:
+    inventory-updated: "inventory-updated"

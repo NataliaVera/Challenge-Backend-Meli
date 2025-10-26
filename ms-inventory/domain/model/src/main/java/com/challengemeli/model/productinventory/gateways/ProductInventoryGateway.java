@@ -8,9 +8,11 @@ import java.util.UUID;
     
 public interface ProductInventoryGateway {
     Mono<ProductInventory> registerInventory(ProductInventory productInventory);
+    Mono<ProductInventory> findInventoryById(UUID inventoryId);
     Mono<ProductInventory> getInventoryByStore(UUID storeId);
-    Mono<ProductInventory> findByStoreAndProduct (UUID storeId,UUID productId);
-    Mono<ProductInventory> updateStock(UUID productId, ProductInventory productInventory);
     Flux<ProductInventory> findAllProductInventory();
+    Mono<ProductInventory> findByStoreAndProduct (UUID storeId,UUID productId);
+    Mono<ProductInventory> addStock(UUID storeId, UUID productId, ProductInventory productInventory);
+    Mono<ProductInventory> reduceStock(UUID storeId, UUID productId, ProductInventory productInventory);
     Mono<Void> deleteProductInventory(UUID productInventory);
 }

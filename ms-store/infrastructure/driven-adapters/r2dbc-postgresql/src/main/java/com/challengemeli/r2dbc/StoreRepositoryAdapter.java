@@ -43,7 +43,8 @@ public class StoreRepositoryAdapter extends AdapterOperations<Store, StoreData, 
 
     @Override
     public Mono<Store> findStoreById(UUID storeId) {
-        return null;
+        return repository.findById(storeId)
+                .map(this::toEntity);
     }
 
     @Override
@@ -62,7 +63,18 @@ public class StoreRepositoryAdapter extends AdapterOperations<Store, StoreData, 
 
     @Override
     public Mono<Store> updateStore(UUID storeId, Store store) {
-        return null;
+        if(store == null){
+            return Mono.error(new IllegalArgumentException("Store cannot be null"));
+        }
+        return repository.findById(storeId)
+                .switchIfEmpty(Mono.error(new IllegalArgumentException("Store with id: "+storeId+" does not exist")))
+                .flatMap(storeData -> {
+                    StoreData storeData1 = toData(store);
+                    storeData1.setStoreId(storeId);
+
+                    return repository.save(storeData1)
+                            .map(this::toEntity);
+                });
     }
 
     @Override

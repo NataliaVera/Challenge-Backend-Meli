@@ -1,4 +1,3 @@
-
 allprojects {
     repositories {
         mavenCentral()
@@ -18,48 +17,49 @@ subprojects {
         sourceCompatibility = JavaVersion.VERSION_17
     }
 
-
     test {
         useJUnitPlatform()
     }
 
     dependencies {
-        implementation 'io.projectreactor:reactor-core'
-        implementation 'io.projectreactor.addons:reactor-extra'
+        implementation 'io.projectreactor:reactor-core:3.6.8'
 
         testImplementation 'io.projectreactor.tools:blockhound-junit-platform:1.0.10.RELEASE'
-
         testImplementation 'io.projectreactor:reactor-test'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
         compileOnly "org.projectlombok:lombok:${lombokVersion}"
-        annotationProcessor  "org.projectlombok:lombok:${lombokVersion}"
-        testCompileOnly  "org.projectlombok:lombok:${lombokVersion}"
-        testAnnotationProcessor  "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
         implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
     }
 
     tasks.withType(Test).configureEach {
         if (JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_13)) {
-            jvmArgs += [
-                    "-XX:+AllowRedefinitionToAddDeleteMethods"
-            ]
+            jvmArgs += ["-XX:+AllowRedefinitionToAddDeleteMethods"]
         }
     }
-
-    test.finalizedBy(project.tasks.jacocoTestReport)
-
 
     jacocoTestReport {
-        dependsOn test, 'pitest'
+        dependsOn test
+        if (tasks.findByName("pitest") != null) {
+            dependsOn tasks.named("pitest")
+        }
+
         reports {
-            xml.setRequired true
-            xml.setOutputLocation layout.buildDirectory.file("reports/jacoco.xml")
-            csv.setRequired false
-            html.setOutputLocation layout.buildDirectory.dir("reports/jacocoHtml")
+            xml.required = true
+            xml.outputLocation = layout.buildDirectory.file("reports/jacoco.xml")
+            csv.required = false
+            html.outputLocation = layout.buildDirectory.dir("reports/jacocoHtml")
         }
     }
 
+    tasks.named("test") {
+        finalizedBy(tasks.named("jacocoTestReport"))
+    }
 }
 
 jacoco {
@@ -68,21 +68,21 @@ jacoco {
 }
 
 tasks.register('jacocoMergedReport', JacocoReport) {
-    dependsOn = [test, subprojects.jacocoTestReport]
+    dependsOn(subprojects.collect { it.tasks.matching { t -> t.name == "test" } })
+    dependsOn(subprojects.collect { it.tasks.matching { t -> t.name == "jacocoTestReport" } })
+
     additionalSourceDirs.setFrom files(subprojects.sourceSets.main.allSource.srcDirs)
     sourceDirectories.setFrom files(subprojects.sourceSets.main.allSource.srcDirs)
     classDirectories.setFrom files(subprojects.sourceSets.main.output)
     executionData.setFrom project.fileTree(dir: '.', include: '**/build/jacoco/test.exec')
+
     reports {
-        xml.setRequired true
-        csv.setRequired false
-        html.setRequired true
+        xml.required = true
+        csv.required = false
+        html.required = true
     }
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.compilerArgs = [
-            '-Amapstruct.suppressGeneratorTimestamp=true'
-    ]
+    options.compilerArgs = ['-Amapstruct.suppressGeneratorTimestamp=true']
 }
-

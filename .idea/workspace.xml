@@ -5,47 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42bdae4d-b403-401a-b802-249ae37b32c5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ms-product/applications/app-service/src/main/resources/create_table.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-product/applications/app-service/src/main/resources/data.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-product/domain/model/src/main/java/com/challengemeli/model/product/exception/InvalidInputException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-product/domain/model/src/main/java/com/challengemeli/model/product/exception/ResourceAlreadyExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-product/domain/model/src/main/java/com/challengemeli/model/product/exception/ResourceNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-product/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/data/ProductData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-product/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/helper/AdapterOperations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-product/infrastructure/entry-points/reactive-web/src/main/java/com/challengemeli/api/helper/CustomErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-product/infrastructure/entry-points/reactive-web/src/main/java/com/challengemeli/api/helper/HandleException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-store/domain/model/src/main/java/com/challengemeli/model/exception/InvalidInputException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-store/domain/model/src/main/java/com/challengemeli/model/exception/ResourceAlreadyExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-store/domain/model/src/main/java/com/challengemeli/model/exception/ResourceNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-store/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/data/StoreData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-store/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/helper/AdapterOperations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-store/infrastructure/entry-points/reactive-web/src/main/java/com/challengemeli/api/helper/CustomErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ms-store/infrastructure/entry-points/reactive-web/src/main/java/com/challengemeli/api/helper/HandleException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-inventory/domain/usecase/src/test/java/com/challengemeli/usecase/inventory/InventoryUseCaseTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/InventoryKafkaProducer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/config/KafkaProducerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/kafka/InventoryEventProducer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/test/java/com/challengemeli/r2dbc/ProductInventoryRepositoryAdapterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-notification/applications/app-service/src/main/resources/create_table.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-notification/domain/model/src/main/java/com/challengemeli/model/exception/NotificationErrorCodes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-notification/domain/model/src/main/java/com/challengemeli/model/exception/NotificationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-notification/domain/model/src/main/java/com/challengemeli/model/notification/NotificationStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-notification/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/InventorySyncRepositoryAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-notification/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/config/ConfigurationBeans.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-notification/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/config/R2dbcConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-notification/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/data/InventorySyncData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-notification/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/data/NotificationData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-notification/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/helper/InventorySyncMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-notification/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/helper/NotificationMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ms-notification/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repository/InventorySyncRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/domain/model/src/main/java/com/challengemeli/model/inventoryevent/InventoryEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/domain/model/src/main/java/com/challengemeli/model/inventoryevent/gateways/InventoryEventGateway.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/domain/model/src/main/java/com/challengemeli/model/product/Product.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/domain/model/src/main/java/com/challengemeli/model/product/gateways/ProductGateway.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/domain/model/src/main/java/com/challengemeli/model/productinventory/ProductInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/domain/model/src/main/java/com/challengemeli/model/productinventory/ProductInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/applications/app-service/src/main/java/com/challengemeli/config/UseCasesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/applications/app-service/src/main/java/com/challengemeli/config/UseCasesConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/applications/app-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/applications/app-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/applications/app-service/src/main/resources/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/applications/app-service/src/main/resources/create_tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-inventory/domain/model/src/main/java/com/challengemeli/model/productinventory/gateways/ProductInventoryGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/domain/model/src/main/java/com/challengemeli/model/productinventory/gateways/ProductInventoryGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/domain/model/src/main/java/com/challengemeli/model/store/Store.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/domain/model/src/main/java/com/challengemeli/model/store/gateways/StoreGateway.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/domain/usecase/src/main/java/com/challengemeli/usecase/product/ProductUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/domain/usecase/src/main/java/com/challengemeli/usecase/store/StoreUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repositoryadpter/ProductInventoryRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repositoryadpter/ProductInventoryRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repositoryadpter/ProductRepositoryAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repositoryadpter/StoreRepositoryAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repositoryadpter/data/ProductData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repositoryadpter/data/ProductInventoryData.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/data/ProductInventoryData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repositoryadpter/data/StoreData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repositoryadpter/repository/ProductInventoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repository/ProductInventoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repositoryadpter/repository/ProductRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repositoryadpter/repository/StoreRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/test/java/com/challengemeli/r2dbc/MyReactiveRepositoryAdapterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/test/java/com/challengemeli/r2dbc/MyReactiveRepositoryAdapterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/domain/usecase/src/main/java/com/challengemeli/usecase/inventory/InventoryUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/domain/usecase/src/main/java/com/challengemeli/usecase/inventory/InventoryUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/data/ProductInventoryData.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/data/ProductInventoryData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repository/ProductInventoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repository/ProductInventoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/repositoryadpter/ProductInventoryRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/ProductInventoryRepositoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/test/java/com/challengemeli/r2dbc/MyReactiveRepositoryAdapterTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/test/java/com/challengemeli/r2dbc/config/PostgreSQLConnectionPoolTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/driven-adapters/r2dbc-postgresql/src/test/java/com/challengemeli/r2dbc/helper/ReactiveAdapterOperationsTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/entry-points/reactive-web/src/main/java/com/challengemeli/api/RouterRest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/infrastructure/entry-points/reactive-web/src/main/java/com/challengemeli/api/RouterRest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/entry-points/reactive-web/src/main/java/com/challengemeli/api/product/ProductHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/entry-points/reactive-web/src/main/java/com/challengemeli/api/store/StoreHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/entry-points/reactive-web/src/main/java/com/challengemeli/api/productinventory/ProductInventoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/infrastructure/entry-points/reactive-web/src/main/java/com/challengemeli/api/productinventory/ProductInventoryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/entry-points/reactive-web/src/test/java/com/challengemeli/api/RouterRestTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/infrastructure/entry-points/reactive-web/src/test/java/com/challengemeli/api/config/ConfigTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-inventory/main.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/ms-inventory/main.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-product/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/ProductRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-product/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/ProductRepositoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-product/infrastructure/entry-points/reactive-web/src/main/java/com/challengemeli/api/helper/HandleException.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-product/infrastructure/entry-points/reactive-web/src/main/java/com/challengemeli/api/helper/HandleException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-product/infrastructure/entry-points/reactive-web/src/test/java/com/challengemeli/api/config/ConfigTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-store/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/StoreRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ms-store/infrastructure/driven-adapters/r2dbc-postgresql/src/main/java/com/challengemeli/r2dbc/StoreRepositoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ms-store/infrastructure/entry-points/reactive-web/src/test/java/com/challengemeli/api/config/ConfigTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +98,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "jdk.selected.JAVA_MODULE": "17",
-    "last_opened_file_path": "C:/Users/57315/Cursos/ChallengeBackendMeli/ms-product"
+    "last_opened_file_path": "C:/Users/57315/Cursos/ChallengeBackendMeli"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
